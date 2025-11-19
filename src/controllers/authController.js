@@ -14,8 +14,17 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
   const { id, password } = req.body;
-  const user = await User.findOne({ where: { id, password } });
-  if (!user) return res.status(401).json({ error: 'Invalid' });
+
+  const user = await User.findByPk(id);
+  if (!user) {
+    return res.status(400).json({ error: "Invalid id or password" });
+  }
+
+  const isValid = await user.validatePassword(password);
+  if (!isValid) {
+    return res.status(400).json({ error: "Invalid id or password" });
+  }
+
   const tokens = generateTokens({ id });
   await RefreshToken.create({ userId: id, token: tokens.refresh });
   res.json(tokens);

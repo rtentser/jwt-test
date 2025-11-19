@@ -12,5 +12,4 @@ Quick start:
 4. Start server (container already runs it on start). Default port 3000.
 
 ## Known issues
-- the password is stored in the database as a non-encrypted string
 - on logout, refresh tokens become expired, while access tokens remain valid until their expiration time
