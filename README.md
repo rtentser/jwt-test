@@ -10,6 +10,3 @@ Quick start:
    docker exec -it express_api sh
    npm run migrate
 4. Start server (container already runs it on start). Default port 3000.
-
-## Known issues
-- on logout, refresh tokens become expired, while access tokens remain valid until their expiration time
